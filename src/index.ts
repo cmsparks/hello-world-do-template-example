@@ -34,8 +34,8 @@ export class MyDurableObject extends DurableObject<Env> {
    * @returns The greeting to be sent back to the Worker
    */
   async sayHello(name: string): Promise<string> {
-    const count = this.ctx.storage.get("counter") ?? count
-    this.ctx.storage.put("counter", count + 1)
+    const count = await this.ctx.storage.get("counter") ?? count
+    await this.ctx.storage.put("counter", count + 1)
     return `Hello, ${name}! Counter: ${count + 1}`;
   }
 }
